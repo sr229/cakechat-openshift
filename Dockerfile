@@ -6,7 +6,7 @@ FROM python:alpine
 RUN apk add \
     git \
     build-base && \
-    git clone https://github.com/lukalabs/cakechat app --bare --depth=10;
+    git clone https://github.com/lukalabs/cakechat /app --depth=10;
 
 WORKDIR /app
 
@@ -24,7 +24,10 @@ COPY entrypoint /home/cakechat
 RUN chgrp -R 0 /home/cakechat && \
     chmod a+x /home/cakechat/entrypoint && \
     chmod -R g=u /home/cakechat && \
-    chmod g=u /etc/passwd
+    chmod g=u /etc/passwd && \
+    apk del \
+    git \
+    build-base;
 
 EXPOSE 8080
 
