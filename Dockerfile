@@ -7,7 +7,7 @@ RUN apt update && \
     apt -y install \
     git \
     build-essential \
-    python3-dev \
+    python3-dev && \
     git clone https://github.com/lukalabs/cakechat /app --depth=10;
 
 WORKDIR /app
@@ -29,10 +29,8 @@ RUN chgrp -R 0 /home/cakechat && \
     chmod g=u /etc/passwd && \
     apt purge -y \
     git \
-    build-essential \
-    libffi-devel \
-    openssl-devel \
-    python3-dev;
+    build-essential && \
+    apt clean
 
 EXPOSE 8080
 
