@@ -1,5 +1,14 @@
 matrix:
    include:
+
+    #######################
+    #    Docker Matrix     #
+    #######################
+     - language: generic
+       sudo: required
+       dist: xenial
+       script: docker build -t $DOCKER_USER/cakechat-openshift:latest .
+
     #######################
     #    Docker Matrix     #
     #######################
