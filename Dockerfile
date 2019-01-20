@@ -3,7 +3,8 @@
 
 FROM python:3.6-stretch
 
-RUN apt -y install \
+RUN apt update && \
+    apt -y install \
     git \
     build-essential \
     python3-dev \
