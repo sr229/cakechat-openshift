@@ -47,6 +47,8 @@ EXPOSE 8080
 
 USER cakechat
 
+RUN python tools/download_model.py && python tools/train.py
+
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
 CMD ["/app/run"]
