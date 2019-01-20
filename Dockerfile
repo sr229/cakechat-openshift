@@ -17,7 +17,7 @@ WORKDIR /app
 
 USER cakechat
 
-RUN wget -qO https://github.com/lukalabs/cakechat/archive/master.zip && \
+RUN wget -q https://github.com/lukalabs/cakechat/archive/master.zip && \
     unzip master.zip -d . && \
     rm -rf master.zip;
 
