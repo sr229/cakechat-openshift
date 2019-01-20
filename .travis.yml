@@ -7,6 +7,10 @@ matrix:
      - language: generic
        sudo: required
        dist: xenial
+       install:
+        - sudo dd if=/dev/zero of=/opt/swap bs=1M count=8096 status=progress
+        - sudo busybox mkswap /opt/swap && sudo chmod -R 644 /opt/swap
+        - sudo busybox swapon /opt/swap
        script: docker build -t $DOCKER_USER/cakechat-openshift:latest .
 
     #######################
@@ -15,6 +19,10 @@ matrix:
      - language: generic
        sudo: required
        dist: xenial
+       install:
+        - sudo dd if=/dev/zero of=/opt/swap bs=1M count=8096 status=progress
+        - sudo busybox mkswap /opt/swap && sudo chmod -R 644 /opt/swap
+        - sudo busybox swapon /opt/swap
        script:
          - docker build -t $DOCKER_USER/cakechat-openshift:latest .
        if: branch = release
@@ -32,6 +40,9 @@ matrix:
         - chmod -R 755 openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc
         - sudo cp -vRf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit/oc /usr/bin
         - rm -rf openshift-origin-client-tools-v3.11.0-0cbc58b-linux-64bit
+        - sudo dd if=/dev/zero of=/opt/swap bs=1M count=8096 status=progress
+        - sudo busybox mkswap /opt/swap && sudo chmod -R 644 /opt/swap
+        - sudo busybox swapon /opt/swap
        script:
          - docker build -t registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/cakechat:latest .
        if: branch = staging
