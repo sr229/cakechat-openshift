@@ -14,7 +14,7 @@ WORKDIR /app
 
 RUN pip install -r requirements.txt && \
     python tools/download_model.py && \
-    rm -rf .* && \
+    rm -rf && \
     rm -rf README.md;
 
 
