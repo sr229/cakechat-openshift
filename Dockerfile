@@ -7,7 +7,7 @@ RUN apk add \
     git \
     build-base \
     python3 \
-    python3-dev && \
+    python3-dev \
     libffi-dev openssl-dev  && \
     pip3 install pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
