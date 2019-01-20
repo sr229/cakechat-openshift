@@ -1,14 +1,16 @@
 # Copyright 2019 (c) Capuccino
 # Licensed Under MIT.
 
-FROM alpine:latest
+FROM debian:latest
 
-RUN apk add \
+RUN apt -y install \
     git \
-    build-base \
+    build-essential \
     python3 \
+    python3-pip \
     python3-dev \
     libffi-dev openssl-dev  && \
+    apt remove -y python && \
     pip3 install pip setuptools && \
     if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
     if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
@@ -22,8 +24,8 @@ RUN pip install -r requirements.txt && \
     rm -rf README.md;
 
 
-RUN addgroup cakechat && \
-    adduser -G cakechat -s /bin/sh -D cakechat;
+RUN adduser --disabled-password --gecos '' cakechat
+
 
 COPY entrypoint /home/cakechat
 
@@ -31,9 +33,9 @@ RUN chgrp -R 0 /home/cakechat && \
     chmod a+x /home/cakechat/entrypoint && \
     chmod -R g=u /home/cakechat && \
     chmod g=u /etc/passwd && \
-    apk del \
+    apt purge -y \
     git \
-    build-base \
+    build-essential \
     libffi-dev \
     openssl-dev \
     python3-dev;
