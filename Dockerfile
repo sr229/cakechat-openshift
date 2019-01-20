@@ -28,9 +28,11 @@ USER root
 RUN pip install  --compile -r requirements.txt
 
 COPY entrypoint /home/cakechat
+COPY exec /app
 
 RUN chgrp -R 0 /home/cakechat && \
     chmod a+x /home/cakechat/entrypoint && \
+    chmod a+x /app/exec && \
     chmod -R g=u /home/cakechat && \
     chmod g=u /etc/passwd && \
     apt purge -y \
@@ -47,4 +49,4 @@ USER cakechat
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
-CMD ["python", "tools/download_model.py", "&&", "python", "/app/bin/cakechat_server.py"]
+CMD ["exec", "./exec"]
