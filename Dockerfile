@@ -12,10 +12,7 @@ RUN apt update && \
 
 WORKDIR /app
 
-RUN pip install  --compile -r requirements.txt && \
-    python tools/download_model.py && \
-    rm -rf && \
-    rm -rf README.md;
+RUN rm -rf README.md;
 
 
 RUN adduser --disabled-password --gecos '' cakechat
@@ -32,10 +29,14 @@ RUN chgrp -R 0 /home/cakechat && \
     build-essential && \
     apt clean
 
+RUN chown -R cakechat:cakechat /app
+
 EXPOSE 8080
 
 USER 10001
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
-CMD ["python", "/app/bin/cakechat_server.py"]
+RUN pip install  --compile -r requirements.txt
+
+CMD ["python", "tools/download_model.py", "&&", "python", "/app/bin/cakechat_server.py"]
