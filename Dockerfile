@@ -49,4 +49,4 @@ USER cakechat
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
-CMD ["exec", "/app/run"]
+CMD ["/app/run"]
