@@ -43,7 +43,7 @@ RUN chmod g+rw /app && \
 
 EXPOSE 8080
 
-USER 10001
+USER cakechat
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
