@@ -1,11 +1,13 @@
 # Copyright 2019 (c) Capuccino
 # Licensed Under MIT.
 
-FROM python:alpine
+FROM alpine:latest
 
 RUN apk add \
     git \
-    build-base && \
+    build-base \
+    python3 \
+    python3-dev && \
     git clone https://github.com/lukalabs/cakechat /app --depth=10;
 
 WORKDIR /app
