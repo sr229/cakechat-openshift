@@ -12,7 +12,7 @@ RUN apt update && \
 
 WORKDIR /app
 
-RUN pip install -r requirements.txt && \
+RUN pip install  --compile -r requirements.txt && \
     python tools/download_model.py && \
     rm -rf && \
     rm -rf README.md;
