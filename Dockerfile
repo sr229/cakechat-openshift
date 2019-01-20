@@ -32,7 +32,7 @@ COPY exec /app
 
 RUN chgrp -R 0 /home/cakechat && \
     chmod a+x /home/cakechat/entrypoint && \
-    chmod a+x /app/exec && \
+    chmod a+x /app/run && \
     chmod -R g=u /home/cakechat && \
     chmod g=u /etc/passwd && \
     apt purge -y \
@@ -49,4 +49,4 @@ USER cakechat
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
 
-CMD ["exec", "./exec"]
+CMD ["exec", "/app/run"]
