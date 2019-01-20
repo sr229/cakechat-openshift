@@ -15,7 +15,8 @@ WORKDIR /app
 RUN rm -rf README.md;
 
 
-RUN adduser --disabled-password --gecos '' cakechat
+RUN pip install  --compile -r requirements.txt && \ 
+    adduser --disabled-password --gecos '' cakechat
 
 
 COPY entrypoint /home/cakechat
@@ -36,7 +37,5 @@ EXPOSE 8080
 USER 10001
 
 ENTRYPOINT ["/home/cakechat/entrypoint"]
-
-RUN pip install  --user --compile -r requirements.txt
 
 CMD ["python", "tools/download_model.py", "&&", "python", "/app/bin/cakechat_server.py"]
