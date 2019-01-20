@@ -31,3 +31,6 @@ matrix:
          - oc project $OPENSHIFT_NAMESPACE
          - oc new-app registry.starter-us-east-2.openshift.com/$OPENSHIFT_NAMESPACE/cakechat:latest
          - oc expose dc/frontend --port=8080
+
+notifications:
+     email: false
