@@ -30,7 +30,8 @@ RUN chgrp -R 0 /home/cakechat && \
     build-essential && \
     apt clean
 
-RUN chown -R cakechat:root /app
+RUN chown -R cakechat:root /app && \
+    chmod g+rw /app;
 
 EXPOSE 8080
 
