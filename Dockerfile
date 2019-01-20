@@ -19,6 +19,8 @@ USER cakechat
 
 RUN wget -q https://github.com/lukalabs/cakechat/archive/master.zip && \
     unzip master.zip -d . && \
+    mv cakechat-master/* . && \
+    rm -rf cakechat-master && \
     rm -rf master.zip;
 
 USER root
