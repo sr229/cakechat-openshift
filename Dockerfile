@@ -28,7 +28,7 @@ USER root
 RUN pip install  --compile -r requirements.txt
 
 COPY entrypoint /home/cakechat
-COPY exec /app
+COPY run /app
 
 RUN chgrp -R 0 /home/cakechat && \
     chmod a+x /home/cakechat/entrypoint && \
