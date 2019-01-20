@@ -6,18 +6,24 @@ FROM python:3.6-stretch
 RUN apt update && \
     apt -y install \
     git \
+    unzip \
     build-essential \
-    python3-dev && \
-    git clone https://github.com/lukalabs/cakechat /app --depth=10;
+    python3-dev 
+
+RUN  mkdir -p /app && adduser --disabled-password --gecos '' cakechat && \
+     chown -R cakechat:cakechat /app
 
 WORKDIR /app
 
-RUN rm -rf README.md;
+USER cakechat
 
+RUN wget -qO - https://github.com/lukalabs/cakechat/archive/master.zip && \
+    unzip master.zip -d . && \
+    rm -rf master.zip;
 
-RUN pip install  --compile -r requirements.txt && \ 
-    adduser --disabled-password --gecos '' cakechat
+USER root
 
+RUN pip install  --compile -r requirements.txt
 
 COPY entrypoint /home/cakechat
 
@@ -30,8 +36,7 @@ RUN chgrp -R 0 /home/cakechat && \
     build-essential && \
     apt clean
 
-RUN chown -R cakechat:cakechat /app && \
-    chmod g+rw /app && \
+RUN chmod g+rw /app && \
     chmod -R g=u /app;
 
 EXPOSE 8080
