@@ -8,8 +8,6 @@ RUN apt update && \
     git \
     build-essential \
     python3-dev \
-    libffi-devel openssl-devel  && \
-    pip3 install pip setuptools && \
     git clone https://github.com/lukalabs/cakechat /app --depth=10;
 
 WORKDIR /app
