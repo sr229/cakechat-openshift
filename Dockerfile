@@ -33,7 +33,10 @@ RUN chgrp -R 0 /home/cakechat && \
     chmod g=u /etc/passwd && \
     apk del \
     git \
-    build-base;
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    python3-dev;
 
 EXPOSE 8080
 
