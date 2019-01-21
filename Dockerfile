@@ -41,7 +41,7 @@ RUN chgrp -R 0 /home/cakechat && \
     apt clean
 
 RUN chgrp -R 0 /app && \
-    chmod g+rw /app && \
+    chmod -R g+rw /app && \
     chmod -R g=u /app;
 
 EXPOSE 8080
