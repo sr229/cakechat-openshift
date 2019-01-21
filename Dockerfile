@@ -46,7 +46,7 @@ RUN chgrp -R 0 /app && \
 
 EXPOSE 8080
 
-USER cakechat
+USER 1000
 
 RUN python tools/download_model.py
 
